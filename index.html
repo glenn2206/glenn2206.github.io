@@ -5,21 +5,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Hanuman:wght@100;400;900&display=swap" rel="stylesheet">
+        <script src="assets/js/footer.js" type="text/javascript" defer></script>
     </head>
     <body>
         <header>
 
         </header>
-        <main class="bg" style="assets/images/gallows.jpeg">
-            
+        <main id="lobby" class="bg" style="background-image: url(assets/images/gallows.jpeg)">
+            <div class="container">
+                <div class="row align-items-end fixed-top wrapper-description">
+                  <div class="col">
+                    <h1 class="text-white text-center text-capitalize">guess before you hanged</h1>
+                    <h5 class="text-white text-center text-capitalize">before you know it, you'll become hangman</h5>
+                  </div>
+                </div>
+                <div class="row align-items-end fixed-bottom wrapper-button">
+                    <button class="bubbly-button text-capitalize">to the gallows</button>
+                </div>
+              </div>
         </main>
-        <footer>
-    
-        </footer>
+        <footer-component></footer-component>
         <script for="javascript" src="assets/js/index.js"></script>
     </body>
 </html>

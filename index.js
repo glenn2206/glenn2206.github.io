@@ -1,4 +1,4 @@
-/*
+/* geln help
 Pembagian Tugas Hangman
 1. Cari database untuk kata dan pertanyaannya (Andre, Glenn)
   1. buat database dulu -> array ["kategori",["kata-kata"]]
