@@ -1,33 +1,26 @@
-/*
-Pembagian Tugas Hangman
-1. Cari database untuk kata dan pertanyaannya (Andre, Glenn)
-  1. buat database dulu -> array ["kategori",["kata-kata"]]
-  2. 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="jawaban"></p>
+    <p id="soal"></p>
+    <button type="button">A</button>
+    <button type="button">B</button>
+    <button type="button">C</button>
+    <button type="button">D</button>
+    <button type="button">E</button>
+    <button type="button">F</button>
+    <button type="button">G</button>
+</body>
+</html>
 
 
-2. Tampilan (Luga,David, Putra )
-  1. Loadear -> start untuk mulai
-  2. Page 2 -> pilihan kategori
-  3. Game mulai
-    -> kesempatan
-  4. Animasi solved
-  5. Animasi salah 
-3. 
-test123
-
-
-ABSENSI!!
-1. GLENN
-2. david
-3. hallo gaes
-4. Andre cek
-
-*/
-//   GLENN
-
-/*
-
-*/
+<script>
 //========================================================
 //L O A D E R
 //========================================================
@@ -54,24 +47,7 @@ if (kategori === "food") {
 } else if (kategori === "brand") {
     rand = database.brand[Math.floor(Math.random() * database.brand.length)]
 }
-//   return rand;
-// }
-// console.log(pilihKategori(kategori));
 
-// Jika huruf ke x sesuai dengan huruf dari randfood
-
-//========================================================
-//PAGE 2, JALANKAN GAMENYA
-//========================================================
-
-//========================================================
-//1. TAMBAHIN FITUR RANDOM KATA UNTUK START (NIKO)
-
-
-//2. TAMBAHIN FITUR BATAS KLIK (DAVID)
-
-
-//========================================================
 
 let jawaban = ""
 let kataTerpilih = ""
@@ -81,31 +57,21 @@ for (let i = 0; i < rand.length; i++) {
 }
 console.log(kataTerpilih + " INI KATA KUNCINYA")
 console.log(jawaban + " INI KATA YANG HARUS DITEBAK")
-// }
-// console.log(jawaban.length);
-
-// JIKA KLIK BUTTON a, MAKA MASUK INPUTAN a
-
 
 let input = "a"
 let newJawaban = ""
-let nyawa = 5;
-
-// function pilihHuruf(input) {
   for (let i = 0; i < kataTerpilih.length; i++) {
-      // if (i == 0) {
-      //   newJawaban += input
-      // }
       if (kataTerpilih[i] === input) {
           newJawaban += input
-          nyawa--;
       } else newJawaban += jawaban[i];
-  }
-  console.log(newJawaban + " INI KATA YANG SUDAH DIBERI INPUTAN")
-  console.log(nyawa);
-  // return [newJawaban, nyawa]
-// }
+    }
+document.getElementById("jawaban").innerHTML = rand
+  document.getElementById("jawaban").innerHTML = kataTerpilih
+  document.getElementById("soal").innerHTML = newJawaban
 
-// console.log(pilihHuruf('a'))
 
-//   GLENN
+  if(document.getElementById('button').clicked == true)
+{
+   alert("button was clicked");
+}
+</script>

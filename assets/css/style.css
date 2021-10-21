@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Hanuman', sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.bg {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
