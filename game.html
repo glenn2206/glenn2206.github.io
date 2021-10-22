@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <link href="https://fonts.googleapis.com/css2?family=Hanuman:wght@100;400;900&display=swap" rel="stylesheet">
   <script src="assets/js/footer.js" type="text/javascript" defer></script>
 
@@ -119,12 +120,12 @@
               class="text-white bg-dark p-2 d-block m-auto">TEBAK KATA</button>
 
 
-            <input type="text" id="tebak" class="p-2 mt-2 text-center"></input>
+              <input type="text" id="tebak" class="p-2 mt-2 text-center text-white" placeholder="Guess The Words"></input>
           </div>
           <div class="row justify-content-center">
-            <button id="clue1" type="button" onclick="clue1()">CLUE1</button>
-            <button id="clue2" type="button" onclick="clue2()">CLUE2</button>
-            <button id="clue3" type="button" onclick="clue3()">CLUE3</button>
+            <div id="clue1" class="text-white text-center text-capitalize">First Hope to escape</div>
+            <div id="clue2" class="text-white text-center text-capitalize">Second Hope to escape</div>
+            <div id="clue3" class="text-white text-center text-capitalize">Your Last chance</div>
           </div>
 
 
@@ -141,9 +142,29 @@
     <footer-component></footer-component>
 
   </main>
-  <div class="popup" onclick="myFunction()">Click me to toggle the popup!
+  <!-- <div class="popup" onclick="myFunction()">Click me to toggle the popup!
     <span class="popuptext" id="myPopup">A Simple Popup!</span>
-  </div>
+  </div> -->
+  <!-- <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"> -->
+        <!-- <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> -->
+        <!-- <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div> -->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> -->
+      <!-- </div>
+    </div> -->
+
+   
   <script for="javascript" src="assets/js/index.js"></script>
   <script for="javascript" src="assets/js/bootstrap.js"></script>
   <script>
@@ -156,7 +177,6 @@
       brand: ['SAMSUNG', 'APPLE', 'ASUS', 'NOKIA', 'INTEL', 'SONY', 'MOTOROLA', 'HUAWEI', 'GOOGLE', 'ONEPLUS'],
     }
     let clue = {
-
       // FOOD
       PIZZA: ["Italian", "Keju", "Bundar"],
       PECEL: ["Tradisional", "Bumbu Kacang", "Sayur"],
@@ -165,7 +185,6 @@
       SEAFOOD: ["Air", "Hewan", "Laut"],
       SALAD: ["Sayur", "Buah", "Vegetarian"],
       CEREALS: ["Sarapan", "Anak - anak", "Susu"],
-
       //SPORT
       FOOTBALL: ["Bola", "Rumput", "Kaki"],
       BASKETBALL: ["Bola", "28 x 15", "Tangan"],
@@ -173,7 +192,6 @@
       CHESS: ["Tangan", "Otak", "Dewa Kipas"],
       BOXING: ["Tangan", "Adrenalin", "Jab/Hook/Uppercut"],
       SMACKDOWN: ["Ring", "The Rock", "Choke Slam"],
-
       //BRAND
       SAMSUNG: ["Suwon", "Elektronik", "Galaxy"],
       APPLE: ["California", "Elektronik", "Steve Jobs"],
@@ -186,11 +204,10 @@
       GOOGLE: ["California", "Larry Page", "Search Engine"],
       ONEPLUS: ["Tiongkok", "Pete Lau", "1+"],
     }
-    //========================================================
-    //PAGE 1, PILIH KATEGORI
-    //========================================================
 
-    // kategori ini masuk dari input HTML nyambung di button
+    //========================================================
+    //PILIH KATEGORI
+    //========================================================
     let kategori = localStorage.getItem('category');
     console.log(kategori)
     let rand = "";
@@ -201,8 +218,6 @@
     } else if (kategori === "brand") {
       rand = database.brand[Math.floor(Math.random() * database.brand.length)]
     }
-
-
 
     //========================================================
     //MEMILIH KATA
@@ -215,7 +230,7 @@
     }
 
     //========================================================
-    //MEMILIH CLUE
+    //MEMILIH HURUF AWAL
     //========================================================
     let input = kataTerpilih[(Math.floor(Math.random() * (kataTerpilih.length / 2))) * 2]
     let newJawaban = ""
@@ -236,6 +251,7 @@
         var popup = document.getElementById("myPopup");
         // popup.classList.toggle("show");
         alert(`Kesempatan clue anda telah habis`);
+        $('#exampleModal').on('shown')
         disableButtonA(); disableButtonB(); disableButtonC(); disableButtonD(); disableButtonE(); disableButtonF(); disableButtonG(); disableButtonH(); disableButtonI(); disableButtonJ(); disableButtonK(); disableButtonL(); disableButtonM(); disableButtonN(); disableButtonO(); disableButtonP(); disableButtonQ(); disableButtonR(); disableButtonS(); disableButtonT(); disableButtonU(); disableButtonV(); disableButtonW(); disableButtonX(); disableButtonY(); disableButtonZ();
       }
       else {
@@ -388,9 +404,9 @@
     if (input === "Z") document.getElementById("btnZ").disabled = true
 
 
-    //+++++++++++++++++++++++=
-
+    //+++++++++++++++++++++++++++
     // CANVAS 1 (HANG OR NOT)
+    //+++++++++++++++++++++++++++
     var canvas = document.getElementById("myCanvas");
     context = canvas.getContext("2d"); // get Canvas Context object
 
@@ -489,7 +505,9 @@
     context.lineTo(25, 100);
     context.stroke();
 
+    //+++++++++++++++++++++++++++
     // CANVAS 2 HANGED
+    //+++++++++++++++++++++++++++
     var canvas2 = document.getElementById("myCanvas2");
     context = canvas2.getContext("2d"); // get Canvas Context object
 
@@ -578,7 +596,9 @@
     context.lineTo(25, 100);
     context.stroke();
 
+  //+++++++++++++++++++++++++++
     // CANVAS 3 (LOLOSS)
+  //+++++++++++++++++++++++++++
     var canvas3 = document.getElementById("myCanvas3");
     context = canvas3.getContext("2d"); // get Canvas Context object
 

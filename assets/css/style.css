@@ -161,6 +161,7 @@ body {
 #tebak {
     background-color: #000000;
     color: white;
+    width: 350px;
 }
 
 input:focus-visible {
