@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanuman:wght@100;400;900&display=swap" rel="stylesheet">
+  <script src="assets/js/footer.js" type="text/javascript" defer></script>
+
+</head>
+
+<body>
+  <main id="lobby" class="bg" style="background-image: url(assets/images/gallows.jpeg)">
+
+    <div class="row justify-content-center">
+      <div class="row">
+        <div id="hangman-figure">
+          <div id="gallow">
+            <div id="pole">
+              <div id="noose"></div>
+              <div id="diagonal"></div>
+              <div id="base"></div>
+            </div>
+          </div>
+
+          <div id="stick-figure">
+            <svg height="150" width="150">
+              <circle id="hangman-head" class="show-hangman" cx="25" cy="25" r="10" />
+              <line id="hangman-body" class="show-hangman" x1="25" y1="34" x2="25" y2="85" />
+              <line id="hangman-leftArm" class="show-hangman" x1="0" y1="70" x2="25" y2="40" />
+              <line id="hangman-rightArm" class="show-hangman" x1="25" y1="40" x2="55" y2="70" />
+              <line id="hangman-leftLeg" class="show-hangman" x1="25" y1="85" x2="0" y2="120" />
+              <line id="hangman-rightLeg" class="show-hangman" x1="25" y1="85" x2="55" y2="120" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row align-items-center mb-3" style="visibility: hidden;">
+                <h2 id="jawaban" class="text-white"></h2>
+            </div> -->
+      <div class="row align-items-center mb-3">
+        <h1 id="soal" class="text-white"></h1>
+      </div>
+      <div id="keyboard-kekinian" class="row align-self-center">
+        <div class="row justify-content-center">
+          <button id="btnQ" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`Q`), disableButtonQ()">Q</button>
+          <button id="btnW" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`W`), disableButtonW()">W</button>
+          <button id="btnE" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`E`), disableButtonE()">E</button>
+          <button id="btnR" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`R`), disableButtonR()">R</button>
+          <button id="btnT" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`T`), disableButtonT()">T</button>
+          <button id="btnY" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`Y`), disableButtonY()">Y</button>
+          <button id="btnU" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`U`), disableButtonU()">U</button>
+          <button id="btnI" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`I`), disableButtonI()">I</button>
+          <button id="btnO" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`O`), disableButtonO()">O</button>
+          <button id="btnP" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`P`), disableButtonP()">P</button>
+        </div>
+
+        <div class="row justify-content-center">
+          <button id="btnA" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`A`), disableButtonA()">A</button>
+          <button id="btnS" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`S`), disableButtonS()">S</button>
+          <button id="btnD" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`D`), disableButtonD()">D</button>
+          <button id="btnF" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`F`), disableButtonF()">F</button>
+          <button id="btnG" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`G`), disableButtonG()">G</button>
+          <button id="btnH" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`H`), disableButtonH()">H</button>
+          <button id="btnJ" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`J`), disableButtonJ()">J</button>
+          <button id="btnK" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`K`), disableButtonK()">K</button>
+          <button id="btnL" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`L`), disableButtonL()">L</button>
+        </div>
+
+        <div class="row justify-content-center">
+          <button id="btnZ" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`Z`), disableButtonZ()">Z</button>
+          <button id="btnX" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`X`), disableButtonX()">X</button>
+          <button id="btnC" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`C`), disableButtonC()">C</button>
+          <button id="btnV" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`V`), disableButtonV()">V</button>
+          <button id="btnB" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`B`), disableButtonB()">B</button>
+          <button id="btnN" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`N`), disableButtonN()">N</button>
+          <button id="btnM" class="text-white bg-dark px-2 py-1 text-center col-1" type="button"
+            onclick="buttonclick(`M`), disableButtonM()">M</button>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-4 text-center my-3">
+            <button id="tebak-kata" type="button" onclick="tebakKata()"
+              class="text-white bg-dark p-2 d-block m-auto">TEBAK KATA</button>
+
+
+            <input type="text" id="tebak" class="p-2 mt-2 text-center"></input>
+          </div>
+          <div class="row justify-content-center">
+            <button id="clue1" type="button" onclick="clue1()">CLUE1</button>
+            <button id="clue2" type="button" onclick="clue2()">CLUE2</button>
+            <button id="clue3" type="button" onclick="clue3()">CLUE3</button>
+          </div>
+
+
+          <p id="tes"></p>
+
+          <a>
+            <button class="text-white bg-dark p-2" onclick=home()>Home</button>
+            <button class="text-white bg-dark p-2" onclick=reload()>Retry</button>
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <footer-component></footer-component>
+
+  </main>
+  <div class="popup" onclick="myFunction()">Click me to toggle the popup!
+    <span class="popuptext" id="myPopup">A Simple Popup!</span>
+  </div>
+  <script for="javascript" src="assets/js/index.js"></script>
+  <script for="javascript" src="assets/js/bootstrap.js"></script>
+  <script>
+    //========================================================
+    //L O A D E R
+    //========================================================
+    let database = {
+      food: ["PIZZA", "PECEL", "MANGO", "BREAD", "SEAFOOD", "PASTA", "SALAD", "CEREALS"],
+      sport: ["SOCCER", "BASKETBALL", "FUTSAL", "CHESS", "BOXING", "SMACKDOWN"],
+      brand: ['SAMSUNG', 'APPLE', 'ASUS', 'NOKIA', 'INTEL', 'SONY', 'MOTOROLA', 'HUAWE', 'GOOGLE', 'ONEPLUS'],
+    }
+
+    let clue = {
+      SAMSUNG: ["Italian", "Keju", "Bundar"],
+      PECEL: ["Tradisional", "Bumbu Kacang", "Sayur"],
+      APPLE: ["Buah", "CIRI2", "CIRI3"],
+      ASUS: ["CIRI1", "CIRI2", "CIRI3"],
+      NOKIA: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+    }
+    //========================================================
+    //PAGE 1, PILIH KATEGORI
+    //========================================================
+
+    // kategori ini masuk dari input HTML nyambung di button
+    let kategori = "brand"
+
+    let rand = "";
+    if (kategori === "food") {
+      rand = database.food[Math.floor(Math.random() * database.food.length)]
+    } else if (kategori === "sport") {
+      rand = database.sport[Math.floor(Math.random() * database.sport.length)]
+    } else if (kategori === "brand") {
+      rand = database.brand[Math.floor(Math.random() * database.brand.length)]
+    }
+
+
+
+    //========================================================
+    //MEMILIH KATA
+    //========================================================
+    let jawaban = ""
+    let kataTerpilih = ""
+    for (let i = 0; i < rand.length; i++) {
+      jawaban += "_ "
+      kataTerpilih += rand[i] + " "
+    }
+
+    //========================================================
+    //MEMILIH CLUE
+    //========================================================
+    let input = kataTerpilih[(Math.floor(Math.random() * (kataTerpilih.length / 2))) * 2]
+    let newJawaban = ""
+    for (let i = 0; i < kataTerpilih.length; i++) {
+      if (kataTerpilih[i] === input) {
+        newJawaban += input
+      } else newJawaban += jawaban[i];
+    }
+    document.getElementById("soal").innerHTML = newJawaban
+
+    //========================================================
+    //AKSI BUTTON UNTUK CLUE
+    //========================================================
+    let batasClue = 3
+    function buttonclick(str) {
+      batasClue--
+      if (batasClue == 0) {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+        disableButtonA(); disableButtonB(); disableButtonC(); disableButtonD(); disableButtonE(); disableButtonF(); disableButtonG(); disableButtonH(); disableButtonI(); disableButtonJ(); disableButtonK(); disableButtonL(); disableButtonM(); disableButtonN(); disableButtonO(); disableButtonP(); disableButtonQ(); disableButtonR(); disableButtonS(); disableButtonT(); disableButtonU(); disableButtonV(); disableButtonW(); disableButtonX(); disableButtonY(); disableButtonZ();
+      }
+      else {
+        let newnewJawaban = ""
+        for (let i = 0; i < kataTerpilih.length; i++) {
+          if (kataTerpilih[i] === str) {
+            newnewJawaban += str
+          } else newnewJawaban += newJawaban[i];
+        }
+        newJawaban = newnewJawaban
+        document.getElementById("soal").innerHTML = newJawaban
+        alert(`Kesempatan Clue anda sisa  ${batasClue}`);
+      }
+    }
+
+    //========================================================
+    //AKSI BUTTON TEBAK KATA
+    //========================================================
+    let batasTebak = 3
+    console.log(rand)
+    console.log(document.getElementById("tebak").value)
+    function tebakKata() {
+      if (batasTebak > 0) {
+        if (document.getElementById("tebak").value === rand.toLowerCase() || document.getElementById("tebak").value === rand.toUpperCase() || document.getElementById("tebak").value === rand) {
+          alert(`SELAMAT ANDA MENANG`);
+        } else {
+          alert(`GAGAL`);
+        }
+        var x = document.getElementById("tebak").value;
+      } else {
+        alert(`SELAMAT ANDA GAGAL TOTAL`);
+      }
+      batasTebak--
+    }
+
+    //========================================================
+    //UNTUK CLUE
+    //========================================================
+    // rand = "PIZZA" // -----> DELETE YA
+    let c1 = ""
+    let c2 = ""
+    let c3 = ""
+    for (key in clue) {
+      if (key == rand) {
+        c1 = clue[rand][0]
+        c2 = clue[rand][1]
+        c3 = clue[rand][2]
+      }
+    }
+
+    //========================================================
+    //AKSI BUTTON CLUE 1-3
+    //========================================================
+
+
+    function clue1() {
+      document.getElementById('clue1').innerText = c1
+    }
+    function clue2() {
+      document.getElementById('clue2').innerText = c2
+    }
+    function clue3() {
+      document.getElementById('clue3').innerText = c3
+    }
+
+
+    //========================================================
+    //HOME AND RELOAD BUTTON
+    //========================================================
+    function home() { history.back() };
+    function reload() { location.reload() };
+
+
+    //========================================================
+    //DISABLE BUTTON
+    //========================================================#000000'
+    function disableButtonA() { document.getElementById("btnA").disabled = true; }
+    function disableButtonB() { document.getElementById("btnB").disabled = true; }
+    function disableButtonC() { document.getElementById("btnC").disabled = true; }
+    function disableButtonD() { document.getElementById("btnD").disabled = true; }
+    function disableButtonE() { document.getElementById("btnE").disabled = true; }
+    function disableButtonF() { document.getElementById("btnF").disabled = true; }
+    function disableButtonG() { document.getElementById("btnG").disabled = true; }
+    function disableButtonH() { document.getElementById("btnH").disabled = true; }
+    function disableButtonI() { document.getElementById("btnI").disabled = true; }
+    function disableButtonJ() { document.getElementById("btnJ").disabled = true; }
+    function disableButtonK() { document.getElementById("btnK").disabled = true; }
+    function disableButtonL() { document.getElementById("btnL").disabled = true; }
+    function disableButtonM() { document.getElementById("btnM").disabled = true; }
+    function disableButtonN() { document.getElementById("btnN").disabled = true; }
+    function disableButtonO() { document.getElementById("btnO").disabled = true; }
+    function disableButtonP() { document.getElementById("btnP").disabled = true; }
+    function disableButtonQ() { document.getElementById("btnQ").disabled = true; }
+    function disableButtonR() { document.getElementById("btnR").disabled = true; }
+    function disableButtonS() { document.getElementById("btnS").disabled = true; }
+    function disableButtonT() { document.getElementById("btnT").disabled = true; }
+    function disableButtonU() { document.getElementById("btnU").disabled = true; }
+    function disableButtonV() { document.getElementById("btnV").disabled = true; }
+    function disableButtonW() { document.getElementById("btnW").disabled = true; }
+    function disableButtonX() { document.getElementById("btnX").disabled = true; }
+    function disableButtonY() { document.getElementById("btnY").disabled = true; }
+    function disableButtonZ() { document.getElementById("btnZ").disabled = true; }
+
+    if (input === "A") document.getElementById("btnA").disabled = true
+    if (input === "B") document.getElementById("btnB").disabled = true
+    if (input === "C") document.getElementById("btnC").disabled = true
+    if (input === "D") document.getElementById("btnD").disabled = true
+    if (input === "E") document.getElementById("btnE").disabled = true
+    if (input === "F") document.getElementById("btnF").disabled = true
+    if (input === "G") document.getElementById("btnG").disabled = true
+    if (input === "H") document.getElementById("btnH").disabled = true
+    if (input === "I") document.getElementById("btnI").disabled = true
+    if (input === "J") document.getElementById("btnJ").disabled = true
+    if (input === "K") document.getElementById("btnK").disabled = true
+    if (input === "L") document.getElementById("btnL").disabled = true
+    if (input === "M") document.getElementById("btnM").disabled = true
+    if (input === "N") document.getElementById("btnN").disabled = true
+    if (input === "O") document.getElementById("btnO").disabled = true
+    if (input === "P") document.getElementById("btnP").disabled = true
+    if (input === "Q") document.getElementById("btnQ").disabled = true
+    if (input === "R") document.getElementById("btnR").disabled = true
+    if (input === "S") document.getElementById("btnS").disabled = true
+    if (input === "T") document.getElementById("btnT").disabled = true
+    if (input === "U") document.getElementById("btnU").disabled = true
+    if (input === "V") document.getElementById("btnV").disabled = true
+    if (input === "W") document.getElementById("btnW").disabled = true
+    if (input === "X") document.getElementById("btnX").disabled = true
+    if (input === "Y") document.getElementById("btnY").disabled = true
+    if (input === "Z") document.getElementById("btnZ").disabled = true
+  </script>
+</body>
+
+</html>

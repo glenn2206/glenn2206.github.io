@@ -12,13 +12,22 @@ h1 {
     font-size: 42px;
 }
 
+h2 {
+    font-size: 36px;
+}
+
 h5 {
     font-size: 18px;
+}
+
+h3 {
+
 }
 
 #lobby {
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 .bg {
@@ -35,10 +44,10 @@ h5 {
     bottom: 15vh;
 }
 
-/* *========================== ANIMATE BUTTON ========================*/ */
+/* *========================== ANIMATE BUTTON ========================*/ 
 
 body {
-
+    /* padding: auto; */
 }
   
 .bubbly-button {
@@ -134,4 +143,87 @@ body {
         background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
         background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
     }
+}
+
+
+/* *========================== ANIMATE BUTTON  END ========================*/
+
+#soal {
+    width: auto;
+    margin: 0 auto;
+}
+
+#jawaban {
+    width: auto;
+    margin: 0 auto;
+}
+
+#tebak {
+    background-color: #000000;
+    color: white;
+}
+
+input:focus-visible {
+    outline: none!important;
+    border: none;
+}
+
+#hangman-figure {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 1rem;
+  }
+
+  #pole {
+    border-left: 3px solid #000;
+    border-top: 3px solid #000;
+    height: 10rem;
+    width: 6rem;
+  }
+
+  #noose {
+    border-right: 3px solid #000;
+    height: 1.5rem;
+  }
+
+  #diagonal {
+    border-left: 3px solid #000;
+    height: 3rem;
+    transform: rotate(45deg);
+  }
+
+  #base {
+    border-top: 3px solid #000;
+    margin-left: -1.55rem;
+    margin-top: 5.25rem;
+    padding-bottom: 3rem;
+    position: absolute;
+    width: 6rem;
+  }
+
+button:disabled,
+button[disabled]{
+    border: 1px solid #000000!important;
+    color: #000000!important;
+    background-color: rgba(0,0,0,.6)!important;
+    cursor: not-allowed;
+}
+
+.brand-button {
+    bottom: 15vh;
+}
+
+.sport-button {
+    bottom: 30vh;
+}
+
+.food-button {
+    bottom: 45vh;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #000;
+    transition: 0.3s;
+    transform: scale(1.2);
 }
