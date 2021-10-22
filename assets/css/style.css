@@ -227,3 +227,10 @@ button:hover {
     transition: 0.3s;
     transform: scale(1.2);
 }
+
+.stick-man {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

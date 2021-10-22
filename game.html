@@ -21,23 +21,27 @@
     <div class="row justify-content-center">
       <div class="row">
         <div id="hangman-figure">
-          <div id="gallow">
+          <!-- <div id="gallow">
             <div id="pole">
               <div id="noose"></div>
               <div id="diagonal"></div>
               <div id="base"></div>
             </div>
-          </div>
+          </div> -->
 
-          <div id="stick-figure">
-            <svg height="150" width="150">
+          <div class="stick-man">
+            <canvas id="myCanvas" height="400" width="300"> </canvas>
+            <canvas id="myCanvas2" height="400" width="300"> </canvas>
+            <canvas id="myCanvas3" height="400" width="300"> </canvas>
+
+            <!-- <svg height="150" width="150">
               <circle id="hangman-head" class="show-hangman" cx="25" cy="25" r="10" />
               <line id="hangman-body" class="show-hangman" x1="25" y1="34" x2="25" y2="85" />
               <line id="hangman-leftArm" class="show-hangman" x1="0" y1="70" x2="25" y2="40" />
               <line id="hangman-rightArm" class="show-hangman" x1="25" y1="40" x2="55" y2="70" />
               <line id="hangman-leftLeg" class="show-hangman" x1="25" y1="85" x2="0" y2="120" />
               <line id="hangman-rightLeg" class="show-hangman" x1="25" y1="85" x2="55" y2="120" />
-            </svg>
+            </svg> -->
           </div>
         </div>
       </div>
@@ -148,28 +152,39 @@
     //========================================================
     let database = {
       food: ["PIZZA", "PECEL", "MANGO", "BREAD", "SEAFOOD", "PASTA", "SALAD", "CEREALS"],
-      sport: ["SOCCER", "BASKETBALL", "FUTSAL", "CHESS", "BOXING", "SMACKDOWN"],
-      brand: ['SAMSUNG', 'APPLE', 'ASUS', 'NOKIA', 'INTEL', 'SONY', 'MOTOROLA', 'HUAWE', 'GOOGLE', 'ONEPLUS'],
+      sport: ["FOOTBALL", "BASKETBALL", "FUTSAL", "CHESS", "BOXING", "SMACKDOWN"],
+      brand: ['SAMSUNG', 'APPLE', 'ASUS', 'NOKIA', 'INTEL', 'SONY', 'MOTOROLA', 'HUAWEI', 'GOOGLE', 'ONEPLUS'],
     }
-
     let clue = {
+
+      // FOOD
       PIZZA: ["Italian", "Keju", "Bundar"],
       PECEL: ["Tradisional", "Bumbu Kacang", "Sayur"],
-      MANGO: ["Buah", "CIRI2", "CIRI3"],
-      BREAD: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
-      INPUTAN: ["CIRI1", "CIRI2", "CIRI3"],
+      MANGO: ["Buah", "Biji besar", "Warna kuning / jingga"],
+      BREAD: ["Sarapan", "Empuk", "Gandum"],
+      SEAFOOD: ["Air", "Hewan", "Laut"],
+      SALAD: ["Sayur", "Buah", "Vegetarian"],
+      CEREALS: ["Sarapan", "Anak - anak", "Susu"],
+
+      //SPORT
+      FOOTBALL: ["Bola", "Rumput", "Kaki"],
+      BASKETBALL: ["Bola", "28 x 15", "Tangan"],
+      FUTSAL: ["Bola", "5 on 5", "Kaki"],
+      CHESS: ["Tangan", "Otak", "Dewa Kipas"],
+      BOXING: ["Tangan", "Adrenalin", "Jab/Hook/Uppercut"],
+      SMACKDOWN: ["Ring", "The Rock", "Choke Slam"],
+
+      //BRAND
+      SAMSUNG: ["Suwon", "Elektronik", "Galaxy"],
+      APPLE: ["California", "Elektronik", "Steve Jobs"],
+      ASUS: ["Taipei", "T.H. Tung", "ROG"],
+      NOKIA: ["Tampere", "Fredik Idesta", "3310"],
+      INTEL: ["California", "Gordon Moore", "Proccessor"],
+      SONY: ["Tokyo", "Akio Morita", "Kamera"],
+      MOTOROLA: ["Illionois", "Paul Galvin", "HP"],
+      HUAWEI: ["ShenZhen", "Ren Zhenfei", "Nova / P30"],
+      GOOGLE: ["California", "Larry Page", "Search Engine"],
+      ONEPLUS: ["Tiongkok", "Pete Lau", "1+"],
     }
     //========================================================
     //PAGE 1, PILIH KATEGORI
@@ -219,7 +234,8 @@
       batasClue--
       if (batasClue == 0) {
         var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
+        // popup.classList.toggle("show");
+        alert(`Kesempatan clue anda telah habis`);
         disableButtonA(); disableButtonB(); disableButtonC(); disableButtonD(); disableButtonE(); disableButtonF(); disableButtonG(); disableButtonH(); disableButtonI(); disableButtonJ(); disableButtonK(); disableButtonL(); disableButtonM(); disableButtonN(); disableButtonO(); disableButtonP(); disableButtonQ(); disableButtonR(); disableButtonS(); disableButtonT(); disableButtonU(); disableButtonV(); disableButtonW(); disableButtonX(); disableButtonY(); disableButtonZ();
       }
       else {
@@ -234,27 +250,6 @@
         alert(`Kesempatan Clue anda sisa  ${batasClue}`);
       }
     }
-
-    //========================================================
-    //AKSI BUTTON TEBAK KATA
-    //========================================================
-    let batasTebak = 3
-    console.log(rand)
-    console.log(document.getElementById("tebak").value)
-    function tebakKata() {
-      if (batasTebak > 0) {
-        if (document.getElementById("tebak").value === rand.toLowerCase() || document.getElementById("tebak").value === rand.toUpperCase() || document.getElementById("tebak").value === rand) {
-          alert(`SELAMAT ANDA MENANG`);
-        } else {
-          alert(`GAGAL`);
-        }
-        var x = document.getElementById("tebak").value;
-      } else {
-        alert(`SELAMAT ANDA GAGAL TOTAL`);
-      }
-      batasTebak--
-    }
-
     //========================================================
     //UNTUK CLUE
     //========================================================
@@ -271,19 +266,61 @@
     }
 
     //========================================================
+    //AKSI BUTTON TEBAK KATA
+    //========================================================
+
+    document.getElementById("myCanvas").style.display = "block"
+    document.getElementById("myCanvas2").style.display = "none"
+    document.getElementById("myCanvas3").style.display = "none"
+
+    let batasTebak = 4
+    console.log(rand)
+    console.log(document.getElementById("tebak").value)
+    function tebakKata() {
+      batasTebak--
+      if (document.getElementById("tebak").value === rand.toLowerCase() || document.getElementById("tebak").value === rand.toUpperCase() || document.getElementById("tebak").value === rand) {
+        alert(`SELAMAT ANDA MENANG`);
+        document.getElementById("myCanvas3").style.display = "block"
+        document.getElementById("myCanvas").style.display = "none"
+        location.reload()
+      } else if (batasTebak > 0) {
+        if (batasTebak == 3) {
+          alert(`Salah besar!! Ini Clue [${c1}]`);
+          document.getElementById('clue1').innerText = c1
+        } else if (batasTebak == 2) {
+          alert(`Salah lagi!! Ini Clue [${c2}]`);
+          document.getElementById('clue2').innerText = c2
+        } else if (batasTebak == 1) {
+          alert(`Percobaan Terakhir!! Ini Clue [${c3}]`);
+          document.getElementById('clue3').innerText = c3
+        }
+        var x = document.getElementById("tebak").value;
+      } else {
+        document.getElementById("myCanvas2").style.display = "block"
+        document.getElementById("myCanvas").style.display = "none"
+        if (confirm(`SELAMAT ANDA GAGAL TOTAL\n\nKlik OK untuk coba lagi`)) {
+          // location.reload()
+        } else {
+          // location.reload()
+        }
+      }
+    }
+
+
+    //========================================================
     //AKSI BUTTON CLUE 1-3
     //========================================================
 
 
-    function clue1() {
-      document.getElementById('clue1').innerText = c1
-    }
-    function clue2() {
-      document.getElementById('clue2').innerText = c2
-    }
-    function clue3() {
-      document.getElementById('clue3').innerText = c3
-    }
+    // function clue1() {
+    //   document.getElementById('clue1').innerText = c1
+    // }
+    // function clue2() {
+    //   document.getElementById('clue2').innerText = c2
+    // }
+    // function clue3() {
+    //   document.getElementById('clue3').innerText = c3
+    // }
 
 
     //========================================================
@@ -349,6 +386,253 @@
     if (input === "X") document.getElementById("btnX").disabled = true
     if (input === "Y") document.getElementById("btnY").disabled = true
     if (input === "Z") document.getElementById("btnZ").disabled = true
+
+
+    //+++++++++++++++++++++++=
+
+    // CANVAS 1 (HANG OR NOT)
+    var canvas = document.getElementById("myCanvas");
+    context = canvas.getContext("2d"); // get Canvas Context object
+
+    context.beginPath();
+    context.fillStyle = "white"; // #ffe4c4
+    context.arc(200, 50 + 50, 50, 0, Math.PI * 2, true); // draw circle for head
+    // (x,y) center, radius, start angle, end angle, anticlockwise
+    context.fill();
+
+    context.beginPath();
+    context.strokeStyle = "white"; // color
+    context.lineWidth = 6;
+    context.stroke();
+
+    // eyes
+    context.beginPath();
+    context.fillStyle = "red"; // color
+    context.arc(180, 50 + 50, 4, 0, Math.PI * 2, true); // draw left eye
+    context.fill();
+    context.arc(220, 50 + 50, 4, 0, Math.PI * 2, true); // draw right eye
+    context.fill();
+
+    // body
+    context.beginPath();
+    context.moveTo(200, 100 + 50);
+    context.lineTo(200, 180 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // arms
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(200, 100 + 50);
+    context.lineTo(150, 130 + 50);
+    context.moveTo(200, 100 + 50);
+    context.lineTo(250, 130 + 50);
+    context.stroke();
+
+    // legs
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(200, 180 + 50);
+    context.lineTo(150, 280 + 50);
+    context.moveTo(200, 180 + 50);
+    context.lineTo(250, 280 + 50);
+    context.stroke();
+
+    // pijakan
+    context.beginPath();
+    context.moveTo(100, 280 + 50);
+    context.lineTo(300, 280 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // kaki pijakan
+    context.beginPath();
+    context.moveTo(125, 280 + 50);
+    context.lineTo(125, 350 + 50);
+    context.moveTo(275, 280 + 50);
+    context.lineTo(275, 350 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // pondasi hanging
+    context.beginPath();
+    context.moveTo(0, 350 + 50);
+    context.lineTo(300, 350 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // body
+    context.beginPath();
+    context.moveTo(25, 0);
+    context.lineTo(25, 350 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // atasan hanging
+    context.beginPath();
+    context.moveTo(0, 0);
+    context.lineTo(200, 0);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // kaki pijakan
+    context.beginPath();
+    context.moveTo(200, 0);
+    context.lineTo(200, 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // arms
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(125, 0);
+    context.lineTo(25, 100);
+    context.stroke();
+
+    // CANVAS 2 HANGED
+    var canvas2 = document.getElementById("myCanvas2");
+    context = canvas2.getContext("2d"); // get Canvas Context object
+
+    context.beginPath();
+    context.fillStyle = "white"; // #ffe4c4
+    context.arc(200, 50 + 50, 50, 0, Math.PI * 2, true); // draw circle for head
+    // (x,y) center, radius, start angle, end angle, anticlockwise
+    context.fill();
+
+    context.beginPath();
+    context.strokeStyle = "white"; // color
+    context.lineWidth = 6;
+    context.stroke();
+
+    // x eyes
+    context.beginPath();
+    context.moveTo(195 - 20, 95);
+    context.lineTo(205 - 20, 105);
+    context.moveTo(205 - 20, 95);
+    context.lineTo(195 - 20, 105);
+    context.moveTo(195 + 20, 95);
+    context.lineTo(205 + 20, 105);
+    context.moveTo(205 + 20, 95);
+    context.lineTo(195 + 20, 105);
+    context.strokeStyle = "red";
+    context.stroke();
+
+
+    // body
+    context.beginPath();
+    context.moveTo(200, 100 + 50);
+    context.lineTo(200, 180 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // arms
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(200, 100 + 50);
+    context.lineTo(150, 130 + 50);
+    context.moveTo(200, 100 + 50);
+    context.lineTo(250, 130 + 50);
+    context.stroke();
+
+    // legs
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(200, 180 + 50);
+    context.lineTo(150, 280 + 50);
+    context.moveTo(200, 180 + 50);
+    context.lineTo(250, 280 + 50);
+    context.stroke();
+
+    // pondasi hanging
+    context.beginPath();
+    context.moveTo(0, 350 + 50);
+    context.lineTo(300, 350 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // body
+    context.beginPath();
+    context.moveTo(25, 0);
+    context.lineTo(25, 350 + 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // atasan hanging
+    context.beginPath();
+    context.moveTo(0, 0);
+    context.lineTo(200, 0);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // kaki pijakan
+    context.beginPath();
+    context.moveTo(200, 0);
+    context.lineTo(200, 50);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // arms
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(125, 0);
+    context.lineTo(25, 100);
+    context.stroke();
+
+    // CANVAS 3 (LOLOSS)
+    var canvas3 = document.getElementById("myCanvas3");
+    context = canvas3.getContext("2d"); // get Canvas Context object
+
+    context.beginPath();
+    context.fillStyle = "white"; // #ffe4c4
+    context.arc(200, 50 + 120, 50, 0, Math.PI * 2, true); // draw circle for head
+    // (x,y) center, radius, start angle, end angle, anticlockwise
+    context.fill();
+
+    context.beginPath();
+    context.strokeStyle = "white"; // color
+    context.lineWidth = 6;
+    context.stroke();
+
+    // eyes
+    context.beginPath();
+    context.fillStyle = "red"; // color
+    context.arc(180, 50 + 120, 4, 0, Math.PI * 2, true); // draw left eye
+    context.fill();
+    context.arc(220, 50 + 120, 4, 0, Math.PI * 2, true); // draw right eye
+    context.fill();
+
+    // body
+    context.beginPath();
+    context.moveTo(200, 100 + 120);
+    context.lineTo(200, 180 + 120);
+    context.strokeStyle = "white";
+    context.stroke();
+
+    // arms
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(200, 100 + 120);
+    context.lineTo(150, 130 + 120);
+    context.moveTo(200, 100 + 120);
+    context.lineTo(250, 130 + 120);
+    context.stroke();
+
+    // legs
+    context.beginPath();
+    context.strokeStyle = "white";
+    context.moveTo(200, 180 + 120);
+    context.lineTo(150, 280 + 120);
+    context.moveTo(200, 180 + 120);
+    context.lineTo(250, 280 + 120);
+    context.stroke();
+
+    // pijakan
+    context.beginPath();
+    context.moveTo(100, 280 + 120);
+    context.lineTo(300, 280 + 120);
+    context.strokeStyle = "white";
+    context.stroke();
+
   </script>
 </body>
 
